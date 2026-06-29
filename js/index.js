@@ -1,18 +1,29 @@
-const tasks = [
-
-];
+const tasks = [];
 console.log(tasks);
 
+function localFromLocalStorage() {
+    const savedTasks = JSON.parse(localStorage.getItem("allTasks"));
+
+    if (savedTasks) {
+        tasks.push(...savedTasks)
+    }
+    loadTasks();
+}
+
+localFromLocalStorage();
 function loadTasks() {
     localStorage.setItem("allTasks", JSON.stringify(tasks));
 
     const taskContainer = document.getElementById('task-container');
     taskContainer.innerHTML = '';
 
-    console.log(tasks);
     for (let i = 0; i < tasks.length; i++) {
-        console.log(tasks[i]);
-        taskContainer.innerHTML += `<div>${tasks[i]}</div>`;
+       
+        taskContainer.innerHTML +=
+        `<div>
+         ${tasks[i]} <button onclick="deleteTask(${i})"><i class="fa-solid fa-trash"></i></button>
+     </div> <br>`;
+
     }
 }
 
@@ -29,6 +40,7 @@ function addTask() {
     taskInputElement.value = '';
 }
 
-function deleteTask() {
-
+function deleteTask(index) {
+tasks.splice(index, 1);
+loadTasks();
 }
