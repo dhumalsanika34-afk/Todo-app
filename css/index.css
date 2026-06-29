@@ -95,6 +95,20 @@ h1 {
     transform: scale(0.97);
 }
 
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ff4d4d; /* Makes the icon red */
+    font-size: 1.1rem;
+}
+
+button:hover {
+    color: #cc0000; /* Darker red on hover */
+}
+
+
 /* Responsive Media Queries */
 @media (max-width: 768px) {
 
